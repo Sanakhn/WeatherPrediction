@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Forecast</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <div class="container">
+    <h1>Weather Forecast</h1>
+    <form method="POST">
+      {% csrf_token %}
+      <label for="city">Enter City Name:</label>
+      <input type="text" id="city" name="city" placeholder="City Name" required>
+      <button type="submit">Get Forecast</button>
+    </form>
+
+    {% if current_temp %}
+    <div class="current-weather">
+      <h2>Current Weather in {{ city }}, {{ country }}</h2>
+      <p>Temperature: {{ current_temp }}°C</p>
+      <p>Feels Like: {{ feels_like }}°C</p>
+      <p>Min Temperature: {{ MinTemp }}°C</p>
+      <p>Max Temperature: {{ MaxTemp }}°C</p>
+      <p>Humidity: {{ humidity }}%</p>
+      <p>Date: {{ date }}</p>
+      <p>Time: {{ time }}</p>
+    </div>
+
+    <div class="forecast">
+      <h2>5-Hour Forecast</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Temperature (°C)</th>
+            <th>Humidity (%)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ time1 }}</td>
+            <td>{{ temp1 }}</td>
+            <td>{{ hum1 }}</td>
+          </tr>
+          <tr>
+            <td>{{ time2 }}</td>
+            <td>{{ temp2 }}</td>
+            <td>{{ hum2 }}</td>
+          </tr>
+          <tr>
+            <td>{{ time3 }}</td>
+            <td>{{ temp3 }}</td>
+            <td>{{ hum3 }}</td>
+          </tr>
+          <tr>
+            <td>{{ time4 }}</td>
+            <td>{{ temp4 }}</td>
+            <td>{{ hum4 }}</td>
+          </tr>
+          <tr>
+            <td>{{ time5 }}</td>
+            <td>{{ temp5 }}</td>
+            <td>{{ hum5 }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>
